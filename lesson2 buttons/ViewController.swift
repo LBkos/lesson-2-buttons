@@ -13,8 +13,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let button1 = createButton(title: "First Button", action: UIAction { _ in
-            print("taped button")
+            print("pressed button 1")
         })
+        view.backgroundColor = .white
         view.addSubview(button1)
         button1.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         button1.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
@@ -22,7 +23,7 @@ class ViewController: UIViewController {
         button1.setNeedsUpdateConfiguration()
         
         let button2 = createButton(title: "Second Medium Button", action: UIAction { _ in
-            print("taped button")
+            print("pressed button 2")
         })
         view.addSubview(button2)
         button2.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
