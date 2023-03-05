@@ -13,6 +13,8 @@
 		B5BAD73C29B36BBD00C41191 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5BAD73A29B36BBD00C41191 /* Main.storyboard */; };
 		B5BAD73E29B36BBD00C41191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B5BAD73D29B36BBD00C41191 /* Assets.xcassets */; };
 		B5BAD74129B36BBD00C41191 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5BAD73F29B36BBD00C41191 /* LaunchScreen.storyboard */; };
+		B5BAD74929B36BF500C41191 /* ViewControllerPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BAD74829B36BF500C41191 /* ViewControllerPreview.swift */; };
+		B5BAD74B29B48AC400C41191 /* PresentedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5BAD74A29B48AC400C41191 /* PresentedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		B5BAD73D29B36BBD00C41191 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B5BAD74029B36BBD00C41191 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B5BAD74229B36BBD00C41191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5BAD74829B36BF500C41191 /* ViewControllerPreview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerPreview.swift; sourceTree = "<group>"; };
+		B5BAD74A29B48AC400C41191 /* PresentedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentedViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,10 +63,12 @@
 				B5BAD73429B36BBD00C41191 /* AppDelegate.swift */,
 				B5BAD73629B36BBD00C41191 /* SceneDelegate.swift */,
 				B5BAD73829B36BBD00C41191 /* ViewController.swift */,
+				B5BAD74A29B48AC400C41191 /* PresentedViewController.swift */,
 				B5BAD73A29B36BBD00C41191 /* Main.storyboard */,
 				B5BAD73D29B36BBD00C41191 /* Assets.xcassets */,
 				B5BAD73F29B36BBD00C41191 /* LaunchScreen.storyboard */,
 				B5BAD74229B36BBD00C41191 /* Info.plist */,
+				B5BAD74829B36BF500C41191 /* ViewControllerPreview.swift */,
 			);
 			path = "lesson2 buttons";
 			sourceTree = "<group>";
@@ -141,6 +147,8 @@
 				B5BAD73929B36BBD00C41191 /* ViewController.swift in Sources */,
 				B5BAD73529B36BBD00C41191 /* AppDelegate.swift in Sources */,
 				B5BAD73729B36BBD00C41191 /* SceneDelegate.swift in Sources */,
+				B5BAD74B29B48AC400C41191 /* PresentedViewController.swift in Sources */,
+				B5BAD74929B36BF500C41191 /* ViewControllerPreview.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
