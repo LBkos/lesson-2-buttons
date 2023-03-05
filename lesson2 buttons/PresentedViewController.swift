@@ -15,10 +15,11 @@ class PresentedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
-
+        
         stackView.addArrangedSubview(createLabel())
-        stackView.addArrangedSubview(createButton(title: "goBack"))
-        stackView.addArrangedSubview(createButton(title: "Go Back To the First View"))
+        stackView.addArrangedSubview(createButton(title: "goBack", selector: #selector(goBack)))
+        stackView.addArrangedSubview(createButton(title: "Go Back To the First View", selector: #selector(goBack)))
+        stackView.addArrangedSubview(createButton(title: "next", selector: #selector(nextView)))
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 16
@@ -41,8 +42,9 @@ class PresentedViewController: UIViewController {
         return label
     }
     
-    func createButton(title: String) -> UIButton {
+    func createButton(title: String, selector: Selector) -> UIButton {
         let backButton = BaseButton()
+        
         backButton.setTitle(title, for: .normal)
         backButton.setImage(UIImage(systemName: "arrow.right.circle.fill"), for: .normal)
         backButton.tintColor = .white
@@ -53,12 +55,17 @@ class PresentedViewController: UIViewController {
         backButton.contentEdgeInsets = .init(top: 10, left: 14, bottom: 10, right: 14)
 
         backButton.adjustsImageWhenHighlighted = false
-        backButton.addTarget(self, action: #selector(goBack), for: .touchUpInside)
+        
+        backButton.addTarget(self, action: selector, for: .touchUpInside)
+        
         return backButton
     }
     
     @objc func goBack(_ sender: UIButton!) {
             dismiss(animated: true)
+    }
+    @objc func nextView(_ sender: UIButton!) {
+        present(LastViewController(), animated: true)
     }
 }
 struct PresentedViewController_Preview: PreviewProvider {
@@ -72,7 +79,7 @@ class BaseButton: UIButton {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         UIView.animate(withDuration: 0.1) {
-            self.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
+            self.transform = self.transform.scaledBy(x: 0.90, y: 0.90)
         }
     }
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
