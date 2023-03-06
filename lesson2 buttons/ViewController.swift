@@ -9,9 +9,10 @@ import UIKit
 import SwiftUI
 
 class ViewController: UIViewController {
-    
+    let presVC = PresentedViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let button1 = createButton(title: "First Button", action: UIAction { _ in
             print("pressed button 1")
         })
@@ -28,12 +29,16 @@ class ViewController: UIViewController {
         button2.topAnchor.constraint(equalTo: view.topAnchor, constant: 120).isActive = true
         
         let button3 = createButton(title: "Third", action: UIAction { _ in
-            self.present(PresentedViewController(), animated: true)
+            self.present(self.presVC, animated: true)
         })
         view.addSubview(button3)
         button3.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         button3.topAnchor.constraint(equalTo: view.topAnchor, constant: 180).isActive = true
         
+        let button4 = createButtonUI(title: "WithoutConfig", selector: #selector(pr))
+        view.addSubview(button4)
+        button4.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        button4.topAnchor.constraint(equalTo: button3.topAnchor, constant: 50).isActive = true
         
     }
 
@@ -51,33 +56,48 @@ class ViewController: UIViewController {
         config.imagePadding = 8
         config.buttonSize = .large
         config.cornerStyle = .medium
-        
+        config.background.backgroundColor = .systemBlue
+        config.background.cornerRadius = 16
         
         config.titleTextAttributesTransformer = UIConfigurationTextAttributesTransformer({ container in
             var returned = container
             returned.font = UIFont.preferredFont(forTextStyle: .headline)
             return returned
         })
-        
         config.contentInsets = .init(top: 10, leading: 14, bottom: 10, trailing: 14)
+        
         button.configuration = config
         button.configurationUpdateHandler = { button in
             button.isHighlighted = false
-//            UIView.animate(withDuration: 0.1) {
-//                if button.isTouchInside {
-//                    button.transform = CGAffineTransform(scaleX: 0.90, y: 0.90)
-//                } else {
-//                    button.transform = CGAffineTransform.identity
-//                }
-//            }
-
         }
         button.setNeedsUpdateConfiguration()
         button.addAction(action, for: .touchUpInside)
         
         return button
     }
-
+    
+    func createButtonUI(title: String, selector: Selector) -> UIButton {
+        let backButton = BaseButton()
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        backButton.setTitle(title, for: .normal)
+        backButton.setImage(UIImage(systemName: "arrow.right.circle.fill"), for: .normal)
+        backButton.tintColor = .white
+        backButton.imageEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 0)
+        backButton.semanticContentAttribute = .forceRightToLeft
+        backButton.setTitleColor(.white, for: .normal)
+//        backButton.backgroundColor = .systemBlue
+        backButton.layer.cornerRadius = 16
+        backButton.layer.backgroundColor = UIColor.systemBlue.cgColor
+        backButton.contentEdgeInsets = .init(top: 10, left: 14, bottom: 10, right: 14)
+        backButton.adjustsImageWhenHighlighted = false
+        backButton.addTarget(self, action: selector, for: .touchUpInside)
+//        backButton.tintColorDidChange()
+        return backButton
+    }
+    
+    @objc func pr(_ sender: Selector) {
+        print("Test")
+    }
 }
 
 struct ViewController_Preview: PreviewProvider {

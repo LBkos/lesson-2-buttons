@@ -10,8 +10,9 @@ import SwiftUI
 
 class PresentedViewController: UIViewController {
     var label = UILabel()
-    
+    var color = UIColor.systemBlue
     var stackView = UIStackView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .gray
@@ -30,69 +31,43 @@ class PresentedViewController: UIViewController {
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
-    
+        
     func createLabel() -> UILabel {
         label.text = "Present View Controller"
         label.textColor = .white
         label.textAlignment = .center
-        
-//        label.frame = .init(x: label.frame.origin.x, y: label.frame.origin.y, width: 200, height: 60)
-//        label.center.y = view.frame.height / 2
-//        label.center.x = view.frame.width / 2
         return label
     }
     
     func createButton(title: String, selector: Selector) -> UIButton {
         let backButton = BaseButton()
-        
         backButton.setTitle(title, for: .normal)
         backButton.setImage(UIImage(systemName: "arrow.right.circle.fill"), for: .normal)
         backButton.tintColor = .white
         backButton.imageEdgeInsets = .init(top: 0, left: 8, bottom: 0, right: 0)
         backButton.semanticContentAttribute = .forceRightToLeft
-        backButton.backgroundColor = .systemBlue
+        backButton.setTitleColor(.white, for: .normal)
         backButton.layer.cornerRadius = 16
+        backButton.layer.backgroundColor = UIColor.systemBlue.cgColor
         backButton.contentEdgeInsets = .init(top: 10, left: 14, bottom: 10, right: 14)
-
         backButton.adjustsImageWhenHighlighted = false
-        
         backButton.addTarget(self, action: selector, for: .touchUpInside)
-        
         return backButton
     }
     
     @objc func goBack(_ sender: UIButton!) {
             dismiss(animated: true)
     }
+    
     @objc func nextView(_ sender: UIButton!) {
-        present(LastViewController(), animated: true)
+        let vc = LastViewController()
+        present(vc, animated: true)
     }
 }
 struct PresentedViewController_Preview: PreviewProvider {
     static var previews: some View {
         ViewControllerPreview {
             PresentedViewController()
-        }
-    }
-}
-class BaseButton: UIButton {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        UIView.animate(withDuration: 0.1) {
-            self.transform = self.transform.scaledBy(x: 0.90, y: 0.90)
-        }
-    }
-    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesCancelled(touches, with: event)
-        UIView.animate(withDuration: 0.1) {
-            self.transform = .identity
-        }
-    }
-    
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesEnded(touches, with: event)
-        UIView.animate(withDuration: 0.1) {
-            self.transform = .identity
         }
     }
 }
